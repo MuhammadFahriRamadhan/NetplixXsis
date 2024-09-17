@@ -6,6 +6,7 @@ import com.xsis.netplix.core.data.remote.ApiService
 import com.xsis.netplix.core.domain.model.DetailMovie
 import com.xsis.netplix.core.domain.model.Genre
 import com.xsis.netplix.core.domain.model.ResultMovie
+import com.xsis.netplix.core.domain.model.Trailer
 import com.xsis.netplix.core.domain.repository.MovieRepository
 import com.xsis.netplix.core.util.ProxyRetrofitQueryMap
 import kotlinx.coroutines.flow.Flow
@@ -42,6 +43,28 @@ class MovieRepositoryImpl(private val apiService: ApiService) : MovieRepository 
                 emit(response.toDetailMovie())
             }catch (e : Exception) {
                 throw Throwable(e.message)
+            }
+        }
+    }
+
+    override suspend fun searchMovies(queryParam: Map<String, Any>): Flow<List<ResultMovie?>?> {
+        return flow {
+            try {
+                val response = apiService.searchMovies(ProxyRetrofitQueryMap(queryParam))
+                emit(response.resultResponses?.map { it?.toResultMovie()  })
+            }catch (e : Exception){
+                throw  Throwable(e.message)
+            }
+        }
+    }
+
+    override suspend fun getTrailer(movieId: String): Flow<Trailer> {
+        return flow {
+            try {
+                val response = apiService.getTrailer(movieId)
+                emit(response.toTrailer())
+            }catch (e : Exception){
+                throw  Throwable(e.message)
             }
         }
     }

@@ -71,6 +71,7 @@ dependencies {
     implementation(libs.fast.adapter.binding)
     implementation(libs.fast.adapter.util)
     implementation(libs.flex.box)
+    implementation(libs.youtube)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

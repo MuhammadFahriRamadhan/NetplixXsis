@@ -28,6 +28,7 @@
             android:src="@drawable/ic_logo_netplix" />
 
         <ImageView
+            android:id="@+id/img_search"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="end"
@@ -35,6 +36,8 @@
             android:src="@drawable/ic_search" />
 
     </androidx.appcompat.widget.Toolbar>
+
+
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -81,5 +84,14 @@
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:indeterminate="true"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

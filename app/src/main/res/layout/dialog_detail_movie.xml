@@ -9,7 +9,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -24,10 +24,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/detailMovieBackDropImage"
+                <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                    android:id="@+id/detailMoviePlayer"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
@@ -39,15 +39,6 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:src="@drawable/ic_launcher_background" />
 
-                <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:src="@drawable/ic_baseline_play_circle_outline_24"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -112,6 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:textSize="15sp"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="@+id/detailMovieImgPoster"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/detailMovieImgPoster"
@@ -124,7 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                tools:text="genre"
+                android:text="genre"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toStartOf="@+id/detailMovieTextGenre"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -172,7 +164,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                tools:text="@string/str_rating_age"
+                android:text="@string/str_rating_age"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toEndOf="@+id/detailMovieImgPoster"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -240,6 +232,13 @@
     </androidx.core.widget.NestedScrollView>
 
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

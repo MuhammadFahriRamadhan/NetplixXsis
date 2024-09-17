@@ -5,6 +5,7 @@ import com.xsis.netplix.core.data.response.DiscoverMovieResponse
 import com.xsis.netplix.core.data.response.GenreMovieResponse
 import com.xsis.netplix.core.data.response.GenreResponse
 import com.xsis.netplix.core.data.response.Response
+import com.xsis.netplix.core.data.response.TrailerResponse
 import com.xsis.netplix.core.util.ProxyRetrofitQueryMap
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -18,8 +19,14 @@ interface ApiService {
 
     @GET("discover/movie")
     suspend fun getMovies(@QueryMap queryParam: ProxyRetrofitQueryMap) : DiscoverMovieResponse
+    @GET("search/movie")
+    suspend fun searchMovies(@QueryMap queryParam: ProxyRetrofitQueryMap) : DiscoverMovieResponse
 
-    @GET("/movie/{movie_id}")
+    @GET("movie/{movie_id}")
     suspend fun getDetailMovie(@Path("movie_id") movieId : String) : DetailMovieResponse
+
+    @GET("movie/{movieId}/videos")
+    suspend fun getTrailer(@Path("movieId") movieId : String) : TrailerResponse
+
 
 }

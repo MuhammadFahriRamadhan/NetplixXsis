@@ -20,9 +20,23 @@ class SearchViewModel : BaseViewModel(),KoinComponent {
     val bodyParam =  HashMap<String,Any>()
     val movieEvent = SingleLiveEvent<List<ResultMovie?>?>()
 
-    fun getMovieGenre(query : String) {
+    fun getMovieGenre(query : String? = "") {
         bodyParam.clear()
-        bodyParam.put("q",query)
+        bodyParam.put("query",query.orEmpty())
+        safeScopeFun {
+            handleFailure(it.getGeneralErrorServer())
+        }.launch {
+            movieRepository.searchMovies(bodyParam).onStart {
+                isLoadingLiveData.postValue(true)
+            }.onCompletion {
+                isLoadingLiveData.postValue(false)
+            }.collect{
+                movieEvent.postValue(it)
+            }
+        }
+    }
+
+    fun getMovies() {
         safeScopeFun {
             handleFailure(it.getGeneralErrorServer())
         }.launch {
